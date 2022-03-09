@@ -1,0 +1,66 @@
+<h1>Nueva persona</h1>
+
+<form action="/persona/cPost" method="POST">
+	<label for="idNombre">Nombre</label>
+	<input type="text" name="nom" id="idNombre"><br/>
+	<input type="submit" value="Crear">
+</form>
+
+
+<div class="container mt-4 mb-4 bg-secondary bg-opacity-10">
+	<div class="row mb-4 ">
+	<h1 class="display-6 col-12 mb-4">Crea tu persona</h1>
+	<form action="<?=base_url()?>Persona/cPost" method="post" class="row" enctype="multipart/form-data">
+		<div class="col-2">			
+			<label for="nom">Nombre de la persona:</label>
+			<input type="text" name="nombre" id="nom" required="required" class="form-control" placeholder="Nombre"/>
+		</div>
+		<div class="col-2">			
+			<label for="pass">Password:</label>
+			<input type="password" name="pass" id="pass" required="required" class="form-control" placeholder="Contraseña"/>
+		</div>
+		<div class="col-2">			
+			<label for="fot">Foto</label>
+			<input type="file" name="foto" id="fot" class="form-control"/>
+		</div>
+		<div class="col-2">	
+				<label class="d-block" for="nace">Pais donde nació</label>
+  				<select class="custom-select w-100" id="nace" name="nace">
+  					<option value="" selected="selected">Choose..</option>
+  					<?php foreach ($paises as $pais): ?>
+  					<option value="<?=$pais->id ?>"><?=$pais->nombre?></option>
+  					<?php endforeach; ?>
+  				</select>
+  		</div>
+  		<div class="col-3">	
+			<label class="d-block" for="vive">Pais donde vivio</label>
+  				<select class="custom-select w-100" id="vive" name="vive">
+  					<option value="" selected="selected">Choose..</option>
+  					<?php foreach ($paises as $pais): ?>
+  					<option value="<?=$pais->id ?>"><?=$pais->nombre?></option>
+  					<?php endforeach; ?>
+  				</select>
+  		</div>
+  		 <div class="col-6 mt-4">
+  		 	<label>Aficiones que le gusta</label>
+  		 	<?php foreach($aficiones as $aficion):?>
+  			<div class="custom-control custom-checkbox">
+  				<input type="checkbox" class="custom-control-input" name="afiGusta[]" id="gus-<?=$aficion->id?>" value="<?=$aficion->id?>">
+  				<label class="custom-control-label" for="gus-<?=$aficion->id?>"><?=$aficion->nombre?></label>
+			</div>
+			<?php endforeach;?>
+  		</div>
+  		<div class="col-6 mt-4">
+  		  <label>Aficiones que le disgusta</label>
+  		  	<?php foreach($aficiones as $aficion):?>
+  			<div class="custom-control custom-checkbox">
+  				<input type="checkbox" class="custom-control-input" name="afiDisgusta[]" id="dis-<?=$aficion->id?>" value="<?=$aficion->id?>">
+  				<label class="custom-control-label" for="dis-<?=$aficion->id?>"><?=$aficion->nombre?></label>
+			</div>
+			<?php endforeach;?>
+  		</div>
+  	<button class="btn btn-primary col-2 mt-4" type="submit">Crear</button>
+	</form>
+	</div>
+</div>
+	

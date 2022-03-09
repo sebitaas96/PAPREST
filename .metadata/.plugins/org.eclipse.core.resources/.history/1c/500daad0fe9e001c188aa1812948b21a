@@ -1,0 +1,5 @@
+package com.example.miPrueba1.repository;
+
+public interface User {
+
+}

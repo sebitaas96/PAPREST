@@ -1,0 +1,65 @@
+
+<div class="container mt-4 mb-4 bg-secondary bg-opacity-10">
+<button type="button" class="btn btn-primary" onclick="location.href='<?=base_url()?>Persona/c'">Crea nueva persona</button>
+<table class="table mt-4 table-hover">
+  <thead class="table table-dark table-striped mt-4 table-hover mt-4">
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Pais nacimiento</th>
+      <th scope="col">Pais residencia</th>
+      <th scope="col">Aficiones gusta</th>
+      <th scope="col">Aficiones odia</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+  <?php foreach ($personas as $persona):?>
+    <tr>
+      <th scope="row"><?=$persona->id?></th>
+      <td><?=$persona->nombre?></td>
+      <td><?php echo ($persona->fetchAs('pais')->naci)!=null? $persona->fetchAs('pais')->naci->nombre:""?></td>
+      <td><?php echo ($persona->fetchAs('pais')->vive)!=null? $persona->fetchAs('pais')->vive->nombre:""?></td>
+      <td>
+      	<?php 
+      	 foreach($persona->ownAficionesgustaList as $gusta){
+      	     echo $gusta->aficion->nombre." ";  
+      	 }
+      	?>
+      		 
+      </td>
+      <td>
+      	<?php 
+      	foreach( $persona->ownAficionesodiaList as $odia){
+      	     echo $odia->aficion->nombre." ";  
+      	 }
+      	?>      
+      </td>
+        <td>
+     <form method="post" action="<?=base_url()?>Persona/u">
+     	<button type="submit" class="btn btn-primary">
+     		<img src="<?=base_url()?>assets/img/pencil.svg" width="20" /> 
+		</button>
+		<input type="hidden" name="persona" value="<?=$persona->id?>"/>
+	</form>
+     </td>
+     <td>
+     <form method="post" action="<?=base_url()?>Persona/d">	
+     	<button class="btn btn-primary">
+     		<img src="<?=base_url()?>assets/img/trash.svg" width="20" /> 
+		</button>
+		<input type="hidden" name="persona" value="<?=$persona->id?>"/>
+	</form>	
+     </td>
+      
+    </tr>
+   <?php endforeach;?>
+  </tbody>
+</table>
+<?php if(isset($alert)&& $alert!=[]):?>
+	<div class="alert alert-<?=$alert[1]?>" role="alert">
+   		<?=$alert[0]?>
+	</div>
+<?php endif;?>
+</div>

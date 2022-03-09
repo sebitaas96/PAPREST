@@ -1,0 +1,17 @@
+package com.example.miPrueba1.restController;
+
+public class UserRestController {
+  // standard constructors
+    
+    private final UserRepository userRepository;
+
+    @GetMapping("/users")
+    public List<User> getUsers() {
+        return (List<User>) userRepository.findAll();
+    }
+
+    @PostMapping("/users")
+    void addUser(@RequestBody User user) {
+        userRepository.save(user);
+    }
+}

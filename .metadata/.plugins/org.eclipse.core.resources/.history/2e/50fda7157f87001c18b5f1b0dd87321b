@@ -1,0 +1,24 @@
+
+<div class="container mt-4 mb-4 bg-secondary bg-opacity-10">
+<button type="button" class="btn btn-primary" onclick="location.href='/persona/c'">Crea nueva persona</button>
+<table class="table mt-4 table-hover">
+  <thead class="table table-dark table-striped mt-4 table-hover mt-4">
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Pais nacimiento</th>
+      <th scope="col">Pais residencia</th>
+      <th scope="col">Aficiones gusta</th>
+      <th scope="col">Aficiones odia</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr th:each="persona:$(personas)">
+      <td scope="row" th:text="${persona.id}"></td> 
+      <td th:text="${persona.nombre}"></td>
+    </tr>
+  </tbody>
+</table>
+</div>

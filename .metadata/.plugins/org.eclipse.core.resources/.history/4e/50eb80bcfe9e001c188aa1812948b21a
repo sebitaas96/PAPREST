@@ -1,0 +1,5 @@
+package com.example.miPrueba1.entities;
+
+public class User {
+
+}
