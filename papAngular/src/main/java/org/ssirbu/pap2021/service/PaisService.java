@@ -32,5 +32,9 @@ public class PaisService {
 	public void delete (Long id) {
 		paisRepository.deleteById(id);
 	}
+	
+	public Pais getPaisById(Long id) {
+		return paisRepository.getById(id);
+	}
 
 }

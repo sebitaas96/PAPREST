@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -27,6 +28,10 @@ public class PaisRestController {
 		List<Pais> paises = paisService.findAll();
 		return paises;
 	}
+	@GetMapping("/{id}")
+	  public Pais getPaisById(@PathVariable("id") Long id){
+	    return paisService.getPaisById(id);
+	  }
 	
 	@PostMapping
 	public Pais c(
