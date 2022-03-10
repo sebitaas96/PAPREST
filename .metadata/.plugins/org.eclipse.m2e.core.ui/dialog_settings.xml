@@ -2,6 +2,7 @@
 <section name="Workbench">
 	<section name="MavenProjectImportWizardPage">
 		<list key="rootDirectory">
+			<item value="D:\eclipse\workspaceSTS\papAngular"/>
 			<item value="D:\eclipse\workspaceSTS\pap2022"/>
 		</list>
 		<list key="projectNameTemplate">
