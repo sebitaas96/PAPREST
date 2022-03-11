@@ -34,8 +34,10 @@ public class PersonaRestController {
 			@RequestBody Persona persona)  {
 		Persona  p = null;
 		try {
+			System.out.println(persona);
 			p = personaService.save(persona);
 		} catch (Exception e) {
+			System.out.println(e.getMessage());
 		}
 		return p;
 	}

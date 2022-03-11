@@ -3,10 +3,12 @@ package org.ssirbu.pap2021.entities;
 
 
 import java.time.LocalDate;
+
 import java.time.Period;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -27,9 +29,9 @@ public class Persona {
 	private LocalDate fNacimiento;
 	private String password;
 	//Es many to one por que muchas personas nacen en un pais y ya lo hemsos mapeado en pai
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	private Pais nace;
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	private Pais vive;
 	
 	@ManyToMany
@@ -161,11 +163,15 @@ public class Persona {
 	public String getRol() {
 		return nombre.equals("admin")?"admin":"auth";
 	}
-	
+
 	@Override
 	public String toString() {
-		return "Pais [nombre=" + nombre + "]";
+		return "Persona [id=" + id + ", nombre=" + nombre + ", fNacimiento=" + fNacimiento + ", password=" + password
+				+ ", nace=" + nace + ", vive=" + vive + ", aficionesGusta=" + aficionesGusta + ", aficionesDisgusta="
+				+ aficionesDisgusta + "]";
 	}
+	
+	
 
 
 
