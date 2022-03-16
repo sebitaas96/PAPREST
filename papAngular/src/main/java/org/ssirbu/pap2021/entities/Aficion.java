@@ -1,6 +1,7 @@
 package org.ssirbu.pap2021.entities;
 
 import java.util.ArrayList;
+
 import java.util.Collection;
 
 import javax.persistence.Column;
@@ -11,6 +12,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+
 @Entity
 public class Aficion {
 	@Id
@@ -20,9 +24,13 @@ public class Aficion {
 	@Column(unique = true)
 	private String nombre; 
 	
+	//El json Ignore properties , Nos trae todos los datos relacionados
+	
 	@ManyToMany(mappedBy="aficionesGusta")
+	@JsonIgnore
 	private Collection<Persona>personasGustan;
 	@ManyToMany(mappedBy = "aficionesDisgusta")
+	@JsonIgnore
 	private Collection<Persona>personasDisgustan;
 	//============================	
 	public Aficion() {

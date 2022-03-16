@@ -19,6 +19,8 @@ import javax.persistence.ManyToOne;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 public class Persona {
 	@Id
@@ -29,14 +31,18 @@ public class Persona {
 	private LocalDate fNacimiento;
 	private String password;
 	//Es many to one por que muchas personas nacen en un pais y ya lo hemsos mapeado en pai
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne
+	@JsonIgnoreProperties({"hibernateLazyInitializer " , "handler"})
 	private Pais nace;
-	@ManyToOne(cascade=CascadeType.ALL)
+	@JsonIgnoreProperties({"hibernateLazyInitializer " , "handler"})
+	@ManyToOne
 	private Pais vive;
 	
 	@ManyToMany
+	@JsonIgnoreProperties({"hibernateLazyInitializer " , "handler"})
 	private Collection<Aficion>aficionesGusta;
 	@ManyToMany
+	@JsonIgnoreProperties({"hibernateLazyInitializer " , "handler"})
 	private Collection<Aficion>aficionesDisgusta;
 	
 	

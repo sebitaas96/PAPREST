@@ -1,6 +1,8 @@
 package org.ssirbu.pap2021.controller.rest;
 
+import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.ssirbu.pap2021.entities.Pais;
+import org.ssirbu.pap2021.entities.Persona;
 import org.ssirbu.pap2021.service.PaisService;
 
 @RestController
@@ -29,9 +32,20 @@ public class PaisRestController {
 		return paises;
 	}
 	@GetMapping("/{id}")
-	  public Pais getPaisById(@PathVariable("id") Long id){
+	  public Optional<Pais> getPaisById(@PathVariable("id") Long id){
 	    return paisService.getPaisById(id);
 	  }
+	
+	@GetMapping("/{id}/nativos")
+	  public Collection<Persona> getNativos(@PathVariable("id") Long id){
+	    return paisService.getNativos(id);
+	  }
+	
+	@GetMapping("/{id}/residentes")
+	  public Collection<Persona> getResidentes(@PathVariable("id") Long id){
+	    return paisService.getResidentes(id);
+	  }
+
 	
 	@PostMapping
 	public Pais c(

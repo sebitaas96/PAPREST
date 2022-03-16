@@ -1,10 +1,13 @@
 package org.ssirbu.pap2021.service;
 
+import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.ssirbu.pap2021.entities.Pais;
+import org.ssirbu.pap2021.entities.Persona;
 import org.ssirbu.pap2021.repository.PaisRepository;
 
 @Service
@@ -33,8 +36,18 @@ public class PaisService {
 		paisRepository.deleteById(id);
 	}
 	
-	public Pais getPaisById(Long id) {
-		return paisRepository.getById(id);
+	public Optional<Pais> getPaisById(Long id) {
+		return paisRepository.findById(id);
+	}
+	
+	public Collection<Persona> getNativos(Long id) {
+			Pais p = paisRepository.getById(id);
+			return p.getNativos();
+	}
+	
+	public Collection<Persona> getResidentes(Long id) {
+		Pais p = paisRepository.getById(id);
+		return p.getResidentes();
 	}
 
 }
